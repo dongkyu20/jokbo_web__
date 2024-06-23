@@ -92,9 +92,6 @@ module.exports = {
                                   <li>
                                       ${authStatusUI}
                                   </li>
-                                  <li>
-                                      <button type="button" class="e-signup button space-inset-4 text is-5 is-primary" onclick="location.href='/auth/register'">회원가입</button>
-                                  </li>
                               </ul>
                           </div>
                       </header>
