@@ -57,9 +57,9 @@ module.exports = {
             <section class="been-header-left">
                 <nav>
                     <ul>
-                        <li><a href="#">UniFile</a></li>
+                        <li><a href="/main">UniFile</a></li>
                         <li><a href="#">|</a></li>
-                        <li><a href="#">슬로건 입력</a></li>
+                        <li><a href="/main">슬로건 입력</a></li>
                     </ul>
                 </nav>
             </section>
@@ -70,20 +70,20 @@ module.exports = {
     
         <hr class="been-horizontal-line">
         <section class="been-header-logo">
-            <img src="/assets/logo.png" alt="로고">
+            <img href="/main" src="/assets/logo.png" alt="로고">
             <nav>
                 <ul>
                     <li>  </a></l>
                     <li class="been-dropdown">
                         <a href="/lecture">강의</a>
                         <ul class="been-dropdown-content">
-                            <li><a href="#">메뉴1</a></li>
-                            <li><a href="#">메뉴2</a></li>
+                            <li><a href="/lecture">글목록</a></li>
+                            <li><a href="/lecture/">메뉴2</a></li>
                             <li><a href="#">메뉴3</a></li>
                         </ul>
                     </li>
                     <li class="been-dropdown">
-                        <a href="#">과제</a>
+                        <a href="/assignment">과제</a>
                         <ul class="been-dropdown-content">
                             <li><a href="#">메뉴1</a></li>
                             <li><a href="#">메뉴2</a></li>
@@ -91,7 +91,7 @@ module.exports = {
                         </ul>
                     </li>
                     <li class="been-dropdown">
-                        <a href="#">족보</a>
+                        <a href="/jokbo">족보</a>
                         <ul class="been-dropdown-content">
                             <li><a href="#">메뉴1</a></li>
                             <li><a href="#">메뉴2</a></li>
@@ -99,7 +99,7 @@ module.exports = {
                         </ul>
                     </li>
                     <li class="been-dropdown">
-                        <a href="#">필기노트</a>
+                        <a href="note">필기노트</a>
                         <ul class="been-dropdown-content">
                             <li><a href="#">메뉴1</a></li>
                             <li><a href="#">메뉴2</a></li>
