@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.taek-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.taek-title {
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.taek-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.taek-left-column {
+    flex: 1;
+    max-width: 50%;
+}
+
+.taek-right-column {
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.taek-details {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.taek-details p {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.taek-image-slider {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    height: 500px;
+}
+
+.taek-slides-wrapper {
+    display: flex;
+    transition: transform 0.6s ease;
+}
+
+.taek-mySlides {
+    min-width: 100%;
+    height: 500px;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.taek-download-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.taek-styled-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    background-color: #AEBFEC;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.taek-styled-button:hover {
+    background-color: #0056b3;
+}
+
+.taek-back-button-section {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#taek-downloadLinks a {
+    display: block;
+    margin-top: 10px;
+}
+
+.taek-prev, .taek-next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.taek-next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.taek-prev:hover, .taek-next:hover {
+    background-color: rgba(0,0,0,0.8);
+}

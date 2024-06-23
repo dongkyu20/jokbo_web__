@@ -1,0 +1,130 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+}
+
+.taek-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.taek-title {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 10px;
+}
+
+input[type="text"], input[type="date"], input[type="file"] {
+  padding: 10px;
+  font-size: 1em;
+  margin-top: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  align-self: flex-end;
+}
+
+button:hover {
+  background-color: #91b4dd;
+}
+
+.taek-uploaded-files {
+  margin-top: 40px;
+}
+
+.taek-uploaded-files h2 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.taek-uploaded-files div {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.taek-uploaded-files div a {
+  color: #007bff;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.taek-uploaded-files div a:hover {
+  text-decoration: underline;
+}
+
+.taek-uploaded-files img {
+  max-width: 90%; /* 이미지 크기 키움 */
+  height: auto;
+  margin-top: 10px;
+  display: block;
+}
+
+/* 슬라이드 쇼 스타일 */
+.taek-slide-container {
+  max-width: 100%;
+  position: relative;
+  margin: auto;
+}
+
+.taek-mySlides {
+  display: none;
+}
+
+img {
+  vertical-align: middle;
+}
+
+.taek-prev, .taek-next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.taek-next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.taek-prev:hover, .taek-next:hover {
+  background-color: rgba(0,0,0,0.8);
+}

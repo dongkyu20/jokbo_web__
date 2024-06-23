@@ -1,0 +1,119 @@
+* {
+  box-sizing: border-box;
+}
+
+  body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+}
+
+.taek-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.taek-title {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.taek-search-section {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.taek-search-bar {
+  width: 300px;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.taek-search-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  background-color: #AEBFEC;
+  color: #fff;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.taek-search-button:hover {
+  background-color: #91b4dd;
+}
+
+.taek-upload-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  background-color: #AEBFEC;
+  color: #fff;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.taek-upload-button:hover {
+  background-color:#91b4dd;
+}
+
+.taek-note {
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-collapse: collapse;
+}
+
+.taek-note td {
+  padding: 10px 20px; /* 공백 줄이기 */
+  vertical-align: top;
+}
+
+.taek-left-column {
+  border-right: 1px solid #ccc;
+  width: 50%;
+}
+
+.taek-right-column {
+  width: 50%;
+  position: relative;
+}
+
+.taek-note-title {
+  cursor: pointer;
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.taek-note-title:hover {
+  color: #0056b3;
+}
+
+.taek-date {
+  font-size: 0.9em;
+  color: #888;
+  margin-top: 5px; /* 제목 아래 공백 */
+}
+
+.taek-buy-button, .taek-delete-button {
+  padding: 5px 10px;
+  font-size: 0.9em;
+  border: none;
+  background-color: #000000;
+  color: #fff;
+  border-radius: 5px;
+  cursor:pointer;
+  position: absolute;
+  bottom:10px
+
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>족보</title>
+    <link rel="stylesheet" href="Jokbo-content-style.css">
+</head>
+<div>
+  <div class="taek-container">
+    <h1 class="taek-title">족보</h1>
+    <hr>
+    <div class="taek-content">
+      <div class="taek-left-column">
+        <div class="taek-image-slider" id="taek-imageSlider">
+          <div class="taek-slides-wrapper" id="taek-slidesWrapper"></div>
+          <a class="taek-prev">&#10094;</a>
+          <a class="taek-next">&#10095;</a>
+        </div>
+      </div>
+      <div class="taek-right-column">
+        <div class="taek-details" id="taek-details">
+          <!-- 여기에 과목명, 대학교 등 정보가 로드됩니다. -->
+        </div>
+        <div class="taek-download-section">
+          <button id="taek-downloadButton" class="taek-styled-button">다운로드</button>
+          <div id="taek-downloadLinks">
+            <!-- 동적으로 다운로드 링크가 추가될 곳 -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="taek-comment-section">
+      <h2>실시간 댓글</h2>
+      <div id="taek-commentList">
+        <!-- 댓글 목록이 여기에 동적으로 추가됩니다 -->
+      </div>
+      <textarea id="taek-commentInput" placeholder="댓글을 입력하세요"></textarea>
+      <button id="taek-commentButton" class="taek-styled-button">댓글 달기</button>
+    </div>
+    <div class="taek-back-button-section">
+      <button id="taek-backButton" class="taek-styled-button">돌아가기</button>
+    </div>
+  </div>
+
+  <script src="Jokbo-content-script.js"></script>
+</div>
+</html>

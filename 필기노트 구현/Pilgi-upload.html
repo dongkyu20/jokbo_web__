@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글 올리기</title>
+    <link rel="stylesheet" href="Pilgi-upload-style.css">
+</head>
+<div>
+  <div class="taek-container">
+    <h1 class="taek-title">글 올리기</h1>
+
+    <form id="taek-uploadForm">
+        <label for="taek-subject">과목명:</label>
+        <input type="text" id="taek-subject" name="subject" required><br>
+        <label for="taek-university">대학교:</label>
+        <input type="text" id="taek-university" name="university" required><br>
+        <label for="taek-department">학과:</label>
+        <input type="text" id="taek-department" name="department" required><br>
+        <label for="taek-professor">교수명:</label>
+        <input type="text" id="taek-professor" name="professor" required><br>
+        <label for="taek-author">작성자:</label>
+        <input type="text" id="taek-author" name="author" required><br>
+        <label for="taek-images">이미지 업로드:</label>
+        <input type="file" id="taek-images" name="images" accept="image/*" multiple><br>
+        <label for="taek-file">파일 업로드:</label>
+        <input type="file" id="taek-file" name="file" accept=".pdf, .docx, .hwp"><br>
+        <button type="submit">업로드</button>
+    </form>
+
+    <div class="taek-uploaded-files">
+      <h2>업로드된 파일들</h2>
+      <div id="taek-uploadedFilesList" class="taek-slide-container"></div>
+    </div>
+
+  </div>
+
+  <script src="Pilgi-upload-script.js"></script>
+</div>
+</html>
