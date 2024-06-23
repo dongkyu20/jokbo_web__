@@ -19,5 +19,12 @@ module.exports = {
         authUsername = `${request.session.nickname}`;
       }
       return authUsername;
+    },
+    resSchool: function (request, response) {
+      var authSchool = '';
+      if (this.isOwner(request, response)){
+        authSchool = `${request.session.nickname}`;
+      }
+      return authSchool;
     }
   }

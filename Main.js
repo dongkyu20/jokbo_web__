@@ -120,12 +120,13 @@ app.get('/main', (req, res) => {
     </div>
     </footer>
 
-    <script>
+    <script type="text/javascript">
     // JavaScript for image slider
     const slides = document.querySelectorAll('.slide');
     const slideContainer = document.querySelector('.slider-content');
     const slideWidth = slides[0].clientWidth;
     const interval = 4000; // 4 seconds
+    let currentIndex = 0;
 
 
     function nextSlide() {
@@ -159,7 +160,9 @@ app.get('/lecture', (req, res) => {
 
 app.get('/lecture/upload', (req, res) => {
   let authStatusUI = authCheck.statusUI(req, res);
-  let bodyContent = `
+  let bodyContent = '';
+  if(authCheck.isOwner(req, res)){
+  bodyContent = `
     <h2>File Upload Form</h2>
     <form action="/lecture/upload" method="post" enctype="multipart/form-data">
       <label for="title">title:</label>
@@ -168,14 +171,20 @@ app.get('/lecture/upload', (req, res) => {
       <input type="number" id="price" name="price" step="1" required><br><br>
       <label for="subject">Subject:</label>
       <input type="text" id="subject" name="subject" required><br><br>
-      <label for="school">school:</label>
-      <input type="text" id="school" name="school" required><br><br>
       <label for="professor">Professor:</label>
       <input type="text" id="professor" name="professor" required><br><br>
       <label for="file">File:</label>
       <input type="file" id="file" name="file" required><br><br>
       <button type="submit">Upload</button>
-    </form>`;
+    </form>`
+  } else{
+    bodyContent = `
+    <script>
+      alert('로그인 후 이용하세요');
+      window.location.href = "/lecture";
+    </script>
+  `;
+  }
   let html = template.HTML('Upload', bodyContent, authStatusUI);
   res.send(html);
 });
@@ -183,14 +192,15 @@ app.get('/lecture/upload', (req, res) => {
 
 // 파일 업로드 처리
 app.post('/lecture/upload', upload.single('file'), (req, res) => {
-  const { title, price, subject, school, professor } = req.body;
-  const author = authCheck.resUsername(req, res);
+  const { title, price, subject, professor } = req.body;
+  const username = authCheck.resUsername(req, res);
+  const school = authCheck.resSchool(req, res);
   const file_path = req.file.path;
   const upload_date = new Date();
 
   db.query(
-    'INSERT INTO lectures (title, author, upload_date, file_path, price, subject, school, professor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-    [ title, author, upload_date, file_path, price, subject, school, professor],
+    'INSERT INTO lectures (title, username, upload_date, file_path, price, subject, school, professor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+    [ title, username, upload_date, file_path, price, subject, school, professor],
     (error, results) => {
       if (error) throw error;
       res.redirect('/main');
@@ -209,7 +219,7 @@ app.get('/lecture/:id', (req, res) => {
       const lecture = results[0];
       let bodyContent = `
         <h2>${lecture.title}</h2>
-        <p><strong>Author:</strong> ${lecture.author}</p>
+        <p><strong>Username:</strong> ${lecture.username}</p>
         <p><strong>Upload Date:</strong> ${lecture.upload_date}</p>
         <p><strong>Price:</strong> ${lecture.price}</p>
         <p><strong>Subject:</strong> ${lecture.subject}</p>
