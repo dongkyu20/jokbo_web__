@@ -53,13 +53,90 @@ app.get('/main', (req, res) => {
   let authStatusUI = authCheck.statusUI(req, res);
   let bodyContent = '';
 
-  if (authCheck.isOwner(req, res)) {
     bodyContent = `
-    <h2>로그인 성공</h2>`;
-  } else {
-    bodyContent = `
-    <h2>비로그인 상태입니다.</h2>`;
-  }
+        <section class="been-notes">
+        <div class="been-note-container">
+            <div class="been-note-title-left">
+                <h2>뜨끈뜨끈 최신 노트</h2>
+                <div class="been-notes-click-container">
+                    <div class="been-notes-click-left been-note-item">운영체제 1주차 월요일 필기 - 고경준<br>₩30,000</div>
+                    <div class="been-notes-click-left been-note-item">운영체제 2주차 월요일 필기 - 고경준<br>₩30,000</div>
+                    <div class="been-notes-click-left been-note-item">운영체제 3주차 월요일 필기 - 고경준<br>₩30,000</div>
+                </div>
+            </div>
+            <div class="been-note-title-right">
+                <h2>뜨끈뜨끈 최신 필기</h2>
+                <div class="been-notes-click-container">
+                    <div class="been-notes-click-right been-note-item">운영체제 4주차 월요일 필기 - 고경준<br>₩30,000</div>
+                    <div class="been-notes-click-right been-note-item">운영체제 5주차 월요일 필기 - 고경준<br>₩30,000</div>
+                    <div class="been-notes-click-right been-note-item">운영체제 6주차 월요일 필기 - 고경준<br>₩30,000</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="been-upload-section">
+        <div class="been-title">
+            <h2>유니파일 코너</h2>
+        </div>
+
+        <div class="been-uploads">
+            <div class="been-uploads-item">
+                <div class="been-image-container">
+                    <img src="./assets/UPL1.png" alt="업로드 이미지">
+                    <a href="#" class="been-upload-button">Upload</a>
+                </div>
+            </div>
+            <div class="been-uploads-item">
+                <div class="been-image-container">
+                    <img src="./assets/UPL1.png" alt="업로드 이미지">
+                    <a href="#" class="been-upload-button">Upload</a>
+                </div>
+            </div>
+            <div class="been-uploads-item">
+                <div class="been-image-container">
+                    <img src="./assets/UPL1.png" alt="업로드 이미지">
+                    <a href="#" class="been-upload-button">Upload</a>
+                </div>
+            </div>
+            <div class="been-uploads-item">
+                <div class="been-image-container">
+                    <img src="./assets/UPL1.png" alt="업로드 이미지">
+                    <a href="#" class="been-upload-button">Upload</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    </div>
+    <footer class="been-footer">
+    <div class="been-container">
+        <p>개인정보처리방침 | 이용약관</p>
+        <p>(주)유니파일 제작자: 김남현 서석빈 이경준 정다빈 진유택 한동규</p>
+        <p>©UNIFILE ALL RIGHTS RESERVED</p>
+    </div>
+    </footer>
+
+    <script>
+    // JavaScript for image slider
+    const slides = document.querySelectorAll('.slide');
+    const slideContainer = document.querySelector('.slider-content');
+    const slideWidth = slides[0].clientWidth;
+    const interval = 4000; // 4 seconds
+
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      slideContainer.style.transition = 'transform 1s ease';
+      slideContainer.style.transform = 'translateX(${`-currentIndex` * `slideWidth`}px)';
+    }
+
+    setInterval(nextSlide, interval);
+    </script>`;
+
 
   let html = template.HTML('Welcome', bodyContent, authStatusUI);
   res.send(html);
