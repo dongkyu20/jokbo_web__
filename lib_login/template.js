@@ -111,7 +111,7 @@ module.exports = {
                               <div class="navbar-menu">
                                   <div class="navbar-left">
                                       <div class="has-dropdown is-hoverable navbar-item category_menu content--no-list-style">
-                                          <a href="/courses?types=ONLINE" class="navbar-item"><span>강의</span></a>
+                                          <a href="/lecture" class="navbar-item"><span>강의</span></a>
                                           <ul class="navbar-dropdown is-boxed">
                                               <li><a class="navbar-item" href="/courses/it-programming?types=ONLINE">포도1</a></li>
                                               <li><a class="navbar-item" href="/courses/it-programming?types=ONLINE">수박1</a></li>
@@ -121,10 +121,10 @@ module.exports = {
                                           </ul>
                                       </div>
                                       <div class="navbar-item">
-                                          <a href="/roadmaps" class="navbar-item"><span>족보</span></a>
+                                          <a href="/jokbo" class="navbar-item"><span>족보</span></a>
                                       </div>
                                       <div class="navbar-item">
-                                          <a href="/mentors" class="navbar-item"><span>과제</span></a>
+                                          <a href="/assignment" class="navbar-item"><span>과제</span></a>
                                       </div>
                                       <div class="navbar-item">
                                           <a href="/mentors" class="navbar-item"><span>필기노트</span></a>
