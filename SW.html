@@ -2,368 +2,14 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.been-0">
     <title>Unifile</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 90%;
-            margin: auto;
-        }
-
-        header {
-            background-color: #ffffff;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: none; /* 아래쪽 얇은 검정 선 */
-            box-shadow: none; /* 아래쪽 그림자만 추가 */
-        }
-
-        header img {
-            height: 50px;
-            margin-right: 20px; /* 이미지와 메뉴 사이 간격 */
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            margin-right: 10px;
-            gap: 10px;
-        }
-
-        .header-right button {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .login-button {
-            background-color: #ffffff;
-            border: 1px solid #000;
-        }
-
-        .signup-button {
-            color: #ffffff;
-            background-color: #c0c0c0;
-            border: 1px solid #ffffff;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            gap: 10px;
-        }
-        
-        nav ul li {
-            display: inline;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            padding: 10px;
-            color: black;
-        }
-
-        .content {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            padding: 20px 0;
-        }
-
-        .section, .notes, .upload-section {
-            position: relative;
-            padding: 20px 0;
-            background-color: transparent; /* 배경을 투명으로 설정 */
-            box-shadow: none; /* 아래쪽 그림자 추가 */
-        }
-
-        .section h2, .notes h2, .upload-section h2 {
-            margin-top: 0;
-        }
-
-        .cards {
-            display: flex;
-            gap: 20px;
-        }
-
-        .card {
-            padding: 20px;
-            text-align: center;
-            flex: 1;
-            background-color: transparent; /* 배경을 투명으로 설정 */
-            border: none; /* 테두리 제거 */
-            box-shadow: none; /* 그림자 제거 */
-        }
-
-        .footer {
-            margin-top: 100px;
-            background-color: #c0c0c0;
-            padding: 20px;
-            text-align: left; /* 텍스트를 왼쪽 정렬 */
-        }
-
-        .notes, .upload-section {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            background-color: transparent; /* 배경을 투명으로 설정 */
-            border-top: none; /* 위쪽 가로 줄 제거 */
-            border-bottom: none; /* 아래쪽 가로 줄 제거 */
-        }
-
-        .note, .upload {
-            padding: 20px;
-            background-color: transparent; /* 배경을 투명으로 설정 */
-            border: none; /* 테두리 제거 */
-            box-shadow: none; /* 그림자 제거 */
-        }
-
-        .upload {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .upload div {
-            flex: 1;
-            margin: 0 5px;
-            text-align: center;
-        }
-
-        .upload div button {
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-
-        .horizontal-line {
-            width: 100%;
-            height: 1px;
-            margin-top: -3px;
-            background-color: #ffffff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
-        }
-
-        .header-logo {
-            margin-left: 75px; /* 오른쪽으로 50px 이동 */
-        }
-
-        .header-logo img {
-            display: inline-block;
-            vertical-align: middle; /* 로고와 내비게이션을 수직으로 가운데 정렬 */
-        }
-
-        .header-logo nav {
-            display: inline-block;
-            vertical-align: middle; /* 로고와 내비게이션을 수직으로 가운데 정렬 */
-        }
-
-        .header-logo nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-        }
-
-        .header-logo nav ul li {
-            margin-right: 20px; /* 각 항목 사이의 간격 설정 */
-            position: relative; /* 드롭다운 메뉴 위치를 위해 */
-        }
-
-        .header-logo nav ul li a {
-            text-decoration: none;
-            color: #000; /* 필요에 따라 링크 색상 설정 */
-        }
-
-        .header-logo nav ul li a:hover {
-            color: #5f81da; /* 마우스를 올렸을 때 색상 변경 */
-        }
-
-        .header-logo nav ul li .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #ffffff;
-            min-width: 130px;
-            border: 1px solid #5f81da;
-            border-radius: 5px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            top: 30px; /* 상위 항목 바로 아래에 위치 */
-            left: 20px; /* 상위 항목에서 20px 오른쪽에 위치 */
-        }
-
-        .header-logo nav ul li .dropdown-content li {
-            padding: 5px 16px;
-        }
-
-        .header-logo nav ul li .dropdown-content li a {
-            color: black;
-            text-decoration: none;
-            display: block;
-        }
-
-        .header-logo nav ul li .dropdown-content li a:hover {
-            color: #5f81da;
-        }
-
-        .header-logo nav ul li:hover .dropdown-content {
-            display: block;
-        }
-
-        .slider-container {
-            margin-top: 9px;
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-        }  
-
-        .slider-content {
-            display: flex;
-            transition: transform 1s ease;
-        }
-    
-        .slide {
-            width: 100%;
-            height: 50vh;
-            flex: 0 0 auto;
-        }
-
-        .title {
-            margin-top: 40px;
-            margin-left: 70px; /* 각 카드 주위에 10px 마진을 추가하여 간격을 조정합니다 */
-        }
-
-        .cards {
-            display: flex;
-            justify-content: space-between; /* 요소 사이의 간격을 동일하게 설정 */
-        }
-
-        .card {
-            text-align: left; /* 텍스트를 왼쪽 정렬로 설정합니다 */
-        }
-
-        .cards > .card:first-child {
-            margin-left: 100px; /* 첫 번째 자식 요소의 오른쪽에 마진을 추가하여 간격 조정 */
-        }
-
-        .cards > .card:last-child {
-            margin-right: 100px; /* 마지막 자식 요소의 왼쪽에 마진을 추가하여 간격 조정 */
-        }
-
-        .note-container {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .note-title-left, .note-title-right {
-            width: 45%;
-            margin-top: 20px;
-            margin-left: 60px;
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        .notes-click-container {
-            display: flex;
-            margin-left: 10px;
-            flex-direction: column;
-            gap: 10px; /* 필요에 따라 간격을 조정하세요 */
-        }
-
-        .note-item {
-            background-color: #fcfcfc; /* 배경색 설정 */
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 설정 */
-            width: 80%; /* 네모칸의 너비 설정 */
-        }
-
-        .notes-click-left, .notes-click-right {
-            border: none; /* 기존에 'border: 1px solid none;'이었던 부분을 수정 */
-        }
-
-        .uploads {
-            display: flex;
-            justify-content: space-between; /* 요소 사이의 간격을 동일하게 설정 */
-        }
-
-        .uploads-item {
-            text-align: center;
-            position: relative; /* 부모 요소로 설정 */
-            flex: 0 0 calc(25% - 20px); /* 반응형으로 4열 배치 */
-        }
-
-        .uploads-item .image-container {
-            position: relative;
-            overflow: hidden; /* 자식 요소의 넘치는 부분을 숨김 */
-        }
-
-        .uploads-item img {
-            max-width: 100%; /* 이미지가 부모 요소에 맞게 최대 너비로 설정 */
-            height: auto; /* 이미지의 높이 자동으로 설정 */
-            display: block; /* 이미지 사이 간격이 생기지 않도록 */
-            transition: transform 0.3s ease;
-        }
-
-        /* 첫 번째 자식 요소의 오른쪽에 마진을 추가하여 간격 조정 */
-        .uploads > .uploads-item:first-child {
-            margin-left: 120px;
-        }
-
-        /* 마지막 자식 요소의 왼쪽에 마진을 추가하여 간격 조정 */
-        .uploads > .uploads-item:last-child {
-            margin-right: 120px;
-        }
-
-        .uploads-item .upload-button {
-            position: absolute;
-            bottom: 2px; /* 버튼을 사진 아래로 이동 */
-            left: 56%; /* 가운데 정렬 */
-            transform: translateX(-50%);
-            width: 50px; /* 버튼 너비 */
-            height: 8px; /* 버튼 높이 */
-            padding: 8px 16px;
-            background-color: none;
-            color: #000000;
-            text-decoration: none;
-            border: 1px solid #000000;
-            border-radius: 5px; /* 모서리 둥글게 설정 */
-            transition: background-color 0.3s ease, color 0.3s ease;
-            z-index: 1; /* 다른 콘텐츠 위에 위치하도록 */
-            align-items: flex-start; /* 텍스트를 위쪽으로 정렬 */
-
-            font-size: 16px; /* 버튼 텍스트 크기 */
-        }
-
-        .upload-button:hover {
-            color: #ffffff;
-            border: 1px solid #ffffff;
-        }
-
-    </style>
+    <link rel="stylesheet" href="./home_css/nav_and_main.css" />
 
 </head>
 <body>
-    <header class="container">
-        <section class="header-left">
+    <header class="been-container">
+        <section class="been-header-left">
             <nav>
                 <ul>
                     <li><a href="#">UniFile</a></li>
@@ -372,45 +18,45 @@
                 </ul>
             </nav>
         </section>
-        <section class="header-right">
-            <button class="login-button">로그인</button>
-            <button class="signup-button">회원가입</button>
+        <section class="been-header-right">
+            <button class="been-login-button">로그인</button>
+            <button class="been-signup-button">회원가입</button>
         </section>
     </header>
 
-    <hr class="horizontal-line">
-    <section class="header-logo">
-        <img src="logo.png" alt="로고">
+    <hr class="been-horizontal-line">
+    <section class="been-header-logo">
+        <img src="./assets/logo.png" alt="로고">
         <nav>
             <ul>
                 <li>  </a></li>
-                <li class="dropdown">
+                <li class="been-dropdown">
                     <a href="#">강의</a>
-                    <ul class="dropdown-content">
+                    <ul class="been-dropdown-content">
                         <li><a href="#">메뉴1</a></li>
                         <li><a href="#">메뉴2</a></li>
                         <li><a href="#">메뉴3</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
+                <li class="been-dropdown">
                     <a href="#">과제</a>
-                    <ul class="dropdown-content">
+                    <ul class="been-dropdown-content">
                         <li><a href="#">메뉴1</a></li>
                         <li><a href="#">메뉴2</a></li>
                         <li><a href="#">메뉴3</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
+                <li class="been-dropdown">
                     <a href="#">족보</a>
-                    <ul class="dropdown-content">
+                    <ul class="been-dropdown-content">
                         <li><a href="#">메뉴1</a></li>
                         <li><a href="#">메뉴2</a></li>
                         <li><a href="#">메뉴3</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
+                <li class="been-dropdown">
                     <a href="#">필기노트</a>
-                    <ul class="dropdown-content">
+                    <ul class="been-dropdown-content">
                         <li><a href="#">메뉴1</a></li>
                         <li><a href="#">메뉴2</a></li>
                         <li><a href="#">메뉴3</a></li>
@@ -422,23 +68,23 @@
 
         <div class="slider-container">
         <div class="slider-content">
-            <img class="slide" src="LECBEN.png" alt="Slide 1">
-            <img class="slide" src="ASSBEN.png" alt="Slide 2">
-            <img class="slide" src="TESBEN.png" alt="Slide 3">
-            <img class="slide" src="NOTBEN.png" alt="Slide 4">
+            <img class="slide" src="./assets/LECBEN.png" alt="Slide 1">
+            <img class="slide" src="./assets/ASSBEN.png" alt="Slide 2">
+            <img class="slide" src="./assets/TESBEN.png" alt="Slide 3">
+            <img class="slide" src="./assets/NOTBEN.png" alt="Slide 4">
         </div>
     </div>
 
 
-        <div class="container content">   
-        <section class="section">
-            <div class="title">
+        <div class="been-container content">   
+        <section class="been-section">
+            <div class="been-title">
                 <h2>뜨끈뜨끈 최신 강의</h2>
             </div>
 
-            <div class="cards">
-                <div class="card">
-                    <img src="LEC1.png" alt="강의 이미지" style="border: 1px solid black;">
+            <div class="been-cards">
+                <div class="been-card">
+                    <img src="./assets/LEC1.png" alt="강의 이미지" style="border: 1px solid black;">
                     <br>
                     <span style="display: inline-block; text-align: left;">
                         컴퓨터 네트워크<br>
@@ -446,8 +92,8 @@
                         ₩30,000
                     </span>
                 </div>
-                <div class="card">
-                <img src="LEC1.png" alt="강의 이미지" style="border: 1px solid black;">
+                <div class="been-card">
+                <img src="./assets/LEC1.png" alt="강의 이미지" style="border: 1px solid black;">
                 <br>
                 <span style="display: inline-block; text-align: left;">
                     컴퓨터 네트워크<br>
@@ -455,8 +101,8 @@
                     ₩30,000
                 </span>
             </div>
-                <div class="card">
-                    <img src="LEC1.png" alt="강의 이미지" style="border: 1px solid black;">
+                <div class="been-card">
+                    <img src="./assets/LEC1.png" alt="강의 이미지" style="border: 1px solid black;">
                     <br>
                     <span style="display: inline-block; text-align: left;">
                         컴퓨터 네트워크<br>
@@ -464,8 +110,8 @@
                         ₩30,000
                     </span>
                 </div>
-                <div class="card">
-                    <img src="LEC1.png" alt="강의 이미지" style="border: 1px solid black;">
+                <div class="been-card">
+                    <img src="./assets/LEC1.png" alt="강의 이미지" style="border: 1px solid black;">
                     <br>
                     <span style="display: inline-block; text-align: left;">
                         컴퓨터 네트워크<br>
@@ -477,56 +123,56 @@
         </section>
 
 
-        <section class="notes">
-            <div class="note-container">
-                <div class="note-title-left">
+        <section class="been-notes">
+            <div class="been-note-container">
+                <div class="been-note-title-left">
                     <h2>뜨끈뜨끈 최신 노트</h2>
-                    <div class="notes-click-container">
-                        <div class="notes-click-left note-item">운영체제 1주차 월요일 필기 - 고경준<br>₩30,000</div>
-                        <div class="notes-click-left note-item">운영체제 2주차 월요일 필기 - 고경준<br>₩30,000</div>
-                        <div class="notes-click-left note-item">운영체제 3주차 월요일 필기 - 고경준<br>₩30,000</div>
+                    <div class="been-notes-click-container">
+                        <div class="been-notes-click-left been-note-item">운영체제 1주차 월요일 필기 - 고경준<br>₩30,000</div>
+                        <div class="been-notes-click-left been-note-item">운영체제 2주차 월요일 필기 - 고경준<br>₩30,000</div>
+                        <div class="been-notes-click-left been-note-item">운영체제 3주차 월요일 필기 - 고경준<br>₩30,000</div>
                     </div>
                 </div>
-                <div class="note-title-right">
+                <div class="been-note-title-right">
                     <h2>뜨끈뜨끈 최신 필기</h2>
-                    <div class="notes-click-container">
-                        <div class="notes-click-right note-item">운영체제 4주차 월요일 필기 - 고경준<br>₩30,000</div>
-                        <div class="notes-click-right note-item">운영체제 5주차 월요일 필기 - 고경준<br>₩30,000</div>
-                        <div class="notes-click-right note-item">운영체제 6주차 월요일 필기 - 고경준<br>₩30,000</div>
+                    <div class="been-notes-click-container">
+                        <div class="been-notes-click-right been-note-item">운영체제 4주차 월요일 필기 - 고경준<br>₩30,000</div>
+                        <div class="been-notes-click-right been-note-item">운영체제 5주차 월요일 필기 - 고경준<br>₩30,000</div>
+                        <div class="been-notes-click-right been-note-item">운영체제 6주차 월요일 필기 - 고경준<br>₩30,000</div>
                     </div>
                 </div>
             </div>
         </section>
 
 
-        <section class="upload-section">
-            <div class="title">
+        <section class="been-upload-section">
+            <div class="been-title">
                 <h2>유니파일 코너</h2>
             </div>
         
-            <div class="uploads">
-                <div class="uploads-item">
-                    <div class="image-container">
-                        <img src="UPL1.png" alt="업로드 이미지">
-                        <a href="#" class="upload-button">Upload</a>
+            <div class="been-uploads">
+                <div class="been-uploads-item">
+                    <div class="been-image-container">
+                        <img src="./assets/UPL1.png" alt="업로드 이미지">
+                        <a href="#" class="been-upload-button">Upload</a>
                     </div>
                 </div>
-                <div class="uploads-item">
-                    <div class="image-container">
-                        <img src="UPL1.png" alt="업로드 이미지">
-                        <a href="#" class="upload-button">Upload</a>
+                <div class="been-uploads-item">
+                    <div class="been-image-container">
+                        <img src="./assets/UPL1.png" alt="업로드 이미지">
+                        <a href="#" class="been-upload-button">Upload</a>
                     </div>
                 </div>
-                <div class="uploads-item">
-                    <div class="image-container">
-                        <img src="UPL1.png" alt="업로드 이미지">
-                        <a href="#" class="upload-button">Upload</a>
+                <div class="been-uploads-item">
+                    <div class="been-image-container">
+                        <img src="./assets/UPL1.png" alt="업로드 이미지">
+                        <a href="#" class="been-upload-button">Upload</a>
                     </div>
                 </div>
-                <div class="uploads-item">
-                    <div class="image-container">
-                        <img src="UPL1.png" alt="업로드 이미지">
-                        <a href="#" class="upload-button">Upload</a>
+                <div class="been-uploads-item">
+                    <div class="been-image-container">
+                        <img src="./assets/UPL1.png" alt="업로드 이미지">
+                        <a href="#" class="been-upload-button">Upload</a>
                     </div>
                 </div>
             </div>
@@ -535,10 +181,10 @@
 
 
     </div>
-    <footer class="footer">
-        <div class="container">
+    <footer class="been-footer">
+        <div class="been-container">
             <p>개인정보처리방침 | 이용약관</p>
-            <p>(주)인프런 | 대표자: 김남현 서석빈 이경준 정다빈 진유택 한동규</p>
+            <p>(주)유니파일 제작자: 김남현 서석빈 이경준 정다빈 진유택 한동규</p>
             <p>©UNIFILE ALL RIGHTS RESERVED</p>
         </div>
     </footer>

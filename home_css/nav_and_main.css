@@ -1,0 +1,352 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.been-container {
+    width: 90%;
+    margin: auto;
+}
+
+header {
+    background-color: #ffffff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: none; /* 아래쪽 얇은 검정 선 */
+    box-shadow: none; /* 아래쪽 그림자만 추가 */
+}
+
+header img {
+    height: 50px;
+    margin-right: 20px; /* 이미지와 메뉴 사이 간격 */
+}
+
+.been-header-left {
+    display: flex;
+    align-items: center;
+}
+
+.been-header-right {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    gap: 10px;
+}
+
+.been-header-right button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.been-login-button {
+    background-color: #ffffff;
+    border: 1px solid #000;
+}
+
+.been-signup-button {
+    color: #ffffff;
+    background-color: #c0c0c0;
+    border: 1px solid #ffffff;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 10px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    padding: 10px;
+    color: black;
+}
+
+.been-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.been-section, .been-notes, .been-upload-section {
+    position: relative;
+    padding: 20px 0;
+    background-color: transparent; /* 배경을 투명으로 설정 */
+    box-shadow: none; /* 아래쪽 그림자 추가 */
+}
+
+.been-section h2, .been-notes h2, .been-upload-section h2 {
+    margin-top: 0;
+}
+
+.been-cards {
+    display: flex;
+    gap: 20px;
+}
+
+.been-card {
+    padding: 20px;
+    text-align: center;
+    flex: 1;
+    background-color: transparent; /* 배경을 투명으로 설정 */
+    border: none; /* 테두리 제거 */
+    box-shadow: none; /* 그림자 제거 */
+}
+
+.been-footer {
+    margin-top: 100px;
+    background-color: #c0c0c0;
+    padding: 20px;
+    text-align: left; /* 텍스트를 왼쪽 정렬 */
+}
+
+.been-notes, .been-upload-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: transparent; /* 배경을 투명으로 설정 */
+    border-top: none; /* 위쪽 가로 줄 제거 */
+    border-bottom: none; /* 아래쪽 가로 줄 제거 */
+}
+
+.been-note, .been-upload {
+    padding: 20px;
+    background-color: transparent; /* 배경을 투명으로 설정 */
+    border: none; /* 테두리 제거 */
+    box-shadow: none; /* 그림자 제거 */
+}
+
+.been-upload {
+    display: flex;
+    justify-content: space-between;
+}
+
+.been-upload div {
+    flex: 1;
+    margin: 0 5px;
+    text-align: center;
+}
+
+.been-upload div button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.been-horizontal-line {
+    width: 100%;
+    height: 1px;
+    margin-top: -3px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+.been-header-logo {
+    margin-left: 75px; /* 오른쪽으로 50px 이동 */
+}
+
+.been-header-logo img {
+    display: inline-block;
+    vertical-align: middle; /* 로고와 내비게이션을 수직으로 가운데 정렬 */
+}
+
+.been-header-logo nav {
+    display: inline-block;
+    vertical-align: middle; /* 로고와 내비게이션을 수직으로 가운데 정렬 */
+}
+
+.been-header-logo nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.been-header-logo nav ul li {
+    margin-right: 20px; /* 각 항목 사이의 간격 설정 */
+    position: relative; /* 드롭다운 메뉴 위치를 위해 */
+}
+
+.been-header-logo nav ul li a {
+    text-decoration: none;
+    color: #000; /* 필요에 따라 링크 색상 설정 */
+}
+
+.been-header-logo nav ul li a:hover {
+    color: #5f81da; /* 마우스를 올렸을 때 색상 변경 */
+}
+
+.been-header-logo nav ul li .been-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 130px;
+    border: 1px solid #5f81da;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 30px; /* 상위 항목 바로 아래에 위치 */
+    left: 20px; /* 상위 항목에서 20px 오른쪽에 위치 */
+}
+
+.been-header-logo nav ul li .been-dropdown-content li {
+    padding: 5px 16px;
+}
+
+.been-header-logo nav ul li .been-dropdown-content li a {
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+.been-header-logo nav ul li .been-dropdown-content li a:hover {
+    color: #5f81da;
+}
+
+.been-header-logo nav ul li:hover .been-dropdown-content {
+    display: block;
+}
+
+.slider-container {
+    margin-top: 9px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}  
+
+.slider-content {
+    display: flex;
+    transition: transform 1s ease;
+}
+
+.slide {
+    width: 100%;
+    height: 50vh;
+    flex: 0 0 auto;
+}
+
+.been-title {
+    margin-top: 40px;
+    margin-left: 70px; /* 각 카드 주위에 10px 마진을 추가하여 간격을 조정합니다 */
+}
+
+.been-cards {
+    display: flex;
+    justify-content: space-between; /* 요소 사이의 간격을 동일하게 설정 */
+}
+
+.been-card {
+    text-align: left; /* 텍스트를 왼쪽 정렬로 설정합니다 */
+}
+
+.been-cards > .been-card:first-child {
+    margin-left: 100px; /* 첫 번째 자식 요소의 오른쪽에 마진을 추가하여 간격 조정 */
+}
+
+.been-cards > .been-card:last-child {
+    margin-right: 100px; /* 마지막 자식 요소의 왼쪽에 마진을 추가하여 간격 조정 */
+}
+
+.been-note-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.been-note-title-left, .been-note-title-right {
+    width: 45%;
+    margin-top: 20px;
+    margin-left: 60px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.been-notes-click-container {
+    display: flex;
+    margin-left: 10px;
+    flex-direction: column;
+    gap: 10px; /* 필요에 따라 간격을 조정하세요 */
+}
+
+.been-note-item {
+    background-color: #fcfcfc; /* 배경색 설정 */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 설정 */
+    width: 80%; /* 네모칸의 너비 설정 */
+}
+
+.been-notes-click-left, .been-notes-click-right {
+    border: none; /* 기존에 'border: 1px solid none;'이었던 부분을 수정 */
+}
+
+.been-uploads {
+    display: flex;
+    justify-content: space-between; /* 요소 사이의 간격을 동일하게 설정 */
+}
+
+.been-uploads-item {
+    text-align: center;
+    position: relative; /* 부모 요소로 설정 */
+    flex: 0 0 calc(25% - 20px); /* 반응형으로 4열 배치 */
+}
+
+.been-uploads-item .been-image-container {
+    position: relative;
+    overflow: hidden; /* 자식 요소의 넘치는 부분을 숨김 */
+}
+
+.been-uploads-item img {
+    max-width: 100%; /* 이미지가 부모 요소에 맞게 최대 너비로 설정 */
+    height: auto; /* 이미지의 높이 자동으로 설정 */
+    display: block; /* 이미지 사이 간격이 생기지 않도록 */
+    transition: transform 0.been-3s ease;
+}
+
+/* 첫 번째 자식 요소의 오른쪽에 마진을 추가하여 간격 조정 */
+.been-uploads > .been-uploads-item:first-child {
+    margin-left: 120px;
+}
+
+/* 마지막 자식 요소의 왼쪽에 마진을 추가하여 간격 조정 */
+.been-uploads > .been-uploads-item:last-child {
+    margin-right: 120px;
+}
+
+.been-uploads-item .been-upload-button {
+    position: absolute;
+    bottom: 2px; /* 버튼을 사진 아래로 이동 */
+    left: 56%; /* 가운데 정렬 */
+    transform: translateX(-50%);
+    width: 50px; /* 버튼 너비 */
+    height: 8px; /* 버튼 높이 */
+    padding: 8px 16px;
+    background-color: none;
+    color: #000000;
+    text-decoration: none;
+    border: 1px solid #000000;
+    border-radius: 5px; /* 모서리 둥글게 설정 */
+    transition: background-color 0.been-3s ease, color 0.been-3s ease;
+    z-index: 1; /* 다른 콘텐츠 위에 위치하도록 */
+    align-items: flex-start; /* 텍스트를 위쪽으로 정렬 */
+
+    font-size: 16px; /* 버튼 텍스트 크기 */
+}
+
+.been-upload-button:hover {
+    color: #ffffff;
+    border: 1px solid #ffffff;
+}

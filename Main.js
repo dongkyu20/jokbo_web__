@@ -15,6 +15,7 @@ const app = express();
 const port = 3000;
 
 app.use('/home_css', express.static(path.join(__dirname, 'home_css')));
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
   secret: 'secret key', // 원하는 문자 입력
