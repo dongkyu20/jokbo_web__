@@ -54,10 +54,10 @@ app.get('/main', (req, res) => {
   let bodyContent = '';
 
   if (authCheck.isOwner(req, res)) {
-    bodyContent = `<hr>
+    bodyContent = `
     <h2>로그인 성공</h2>`;
   } else {
-    bodyContent = `<hr>
+    bodyContent = `
     <h2>비로그인 상태입니다.</h2>`;
   }
 
@@ -70,7 +70,7 @@ app.get('/lecture', (req, res) => {
   let authStatusUI = authCheck.statusUI(req, res);
   db.query('SELECT * FROM lectures', (error, results) => {
     if (error) throw error;
-    let bodyContent = `<hr><h2>강의</h2>`;
+    let bodyContent = `<h2>강의</h2>`;
     results.forEach(lecture => {
       bodyContent += `<div><a href="/lecture/${lecture.id}"><h3>${lecture.title}</h3></a><hr></div>`;
     });
@@ -131,7 +131,6 @@ app.get('/lecture/:id', (req, res) => {
     if (results.length > 0) {
       const lecture = results[0];
       let bodyContent = `
-        <hr>
         <h2>${lecture.title}</h2>
         <p><strong>Author:</strong> ${lecture.author}</p>
         <p><strong>Upload Date:</strong> ${lecture.upload_date}</p>
@@ -177,7 +176,7 @@ app.get('/jokbo', (req, res) => {
   let authStatusUI = authCheck.statusUI(req, res);
   let bodyContent = '';
 
-  bodyContent = `<hr>
+  bodyContent = `
   <h2>족보</h2>`;
 
   let html = template.HTML('Welcome', bodyContent, authStatusUI);
@@ -188,7 +187,7 @@ app.get('/assignment', (req, res) => {
   let authStatusUI = authCheck.statusUI(req, res);
   let bodyContent = '';
 
-  bodyContent = `<hr>
+  bodyContent = `
   <h2>과제</h2>`;
 
   let html = template.HTML('Welcome', bodyContent, authStatusUI);
@@ -199,7 +198,7 @@ app.get('/note', (req, res) => {
   let authStatusUI = authCheck.statusUI(req, res);
   let bodyContent = '';
 
-  bodyContent = `<hr>
+  bodyContent = `
   <h2>필기노트</h2>`;
 
   let html = template.HTML('Welcome', bodyContent, authStatusUI);

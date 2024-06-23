@@ -9,7 +9,11 @@ module.exports = {
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.been-0">
               <title>Unifile</title>
-              <link rel="stylesheet" href="./home_css/nav_and_main.css" />
+              <link rel="stylesheet" href="/home_css/nav_and_main.css" />
+              <link rel="stylesheet" href="/home_css/Gwage-style.css" />
+              <link rel="stylesheet" href="/home_css/Jokbo-style.css" />
+              <link rel="stylesheet" href="/home_css/Pilgi-style.css" />
+
               <style>
                   form {
                       display: flex;
@@ -66,10 +70,10 @@ module.exports = {
     
         <hr class="been-horizontal-line">
         <section class="been-header-logo">
-            <img src="./assets/logo.png" alt="로고">
+            <img src="/assets/logo.png" alt="로고">
             <nav>
                 <ul>
-                    <li>  </a></li>
+                    <li>  </a></l>
                     <li class="been-dropdown">
                         <a href="/lecture">강의</a>
                         <ul class="been-dropdown-content">
@@ -105,7 +109,8 @@ module.exports = {
                 </ul>
             </nav>
         </section>
-              <div class="login_section">
+              <div>
+              <hr>
                   ${body}
               </div>
           </body>

@@ -73,7 +73,7 @@ router.get('/login', function (request, response) {
             </form>            
             <p class="register-link">계정이 없으신가요? <a href="/auth/register">회원가입</a></p>
         </div>
-    `, '');
+    `, '<button class="been-login-button" onclick="location.href=`/auth/login`">로그인</button> | &nbsp; <button class="been-signup-button" onclick="location.href=`/auth/register`">회원가입</button>');
     response.send(html);
 });
 
@@ -131,7 +131,7 @@ router.get('/register', function(request, response) {
                     text-align: center;
                     width: 400px;
                     margin: 0 auto;
-                    margin-top: 50px;
+
                     border: 1px solid #ddd;
                 }
                 .register-title {

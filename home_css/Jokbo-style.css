@@ -1,0 +1,175 @@
+* {
+  box-sizing: border-box;
+}
+
+.taek-body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+}
+
+.taek-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.taek-title {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.taek-search-section {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.taek-search-bar {
+  width: 300px;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.taek-search-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  background-color: #AEBFEC;
+  color: #fff;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.taek-search-button:hover {
+  background-color: #91b4dd;
+}
+
+.taek-upload-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  background-color: #AEBFEC;
+  color: #fff;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.taek-upload-button:hover {
+  background-color: #91b4dd;
+}
+
+.taek-note {
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-collapse: collapse;
+}
+
+.taek-note td {
+  padding: 10px 10px; /* 공백 줄이기 */
+  vertical-align: top;
+}
+
+.taek-left-column {
+  width: 150px; /* 이미지가 보여지는 칸을 크게 설정 */
+  padding-right: 10px; /* 이미지와 텍스트 사이 간격 조정 */
+}
+
+.taek-middle-column {
+  width: calc(100% - 150px); /* 제목과 날짜가 들어갈 칸 */
+  padding-left: 0; /* 왼쪽 패딩 제거 */
+}
+
+.taek-right-column {
+  width: 50%;
+  position: relative;
+  border-left: 1px solid #ccc; /* 구분선을 가운데로 이동 */
+}
+
+.taek-thumbnail {
+  width: 130px; /* 이미지 크기 확대 */
+  height: 130px;
+  background-size: cover;
+  background-position: center;
+  filter: blur(1px); /* 블러를 약하게 설정 */
+  display: inline-block; /* 사진이 한 줄에 있도록 설정 */
+  vertical-align: middle; /* 세로 가운데 정렬 */
+}
+
+.taek-note-info {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0; /* 제목을 사진쪽으로 최대한 가깝게 */
+}
+
+.taek-note-title {
+  cursor: pointer;
+  color: #000; /* 기본 검은색 */
+  text-decoration: none; /* 밑줄 제거 */
+  margin-left: 0; /* 제목과 날짜를 사진과 가깝게 */
+}
+
+.taek-note-title:hover {
+  color: #007bff; /* 마우스 오버 시 색상 변경 */
+}
+
+.taek-note-title.visited {
+  color: #555; /* 클릭 후 색상 변경 */
+}
+
+.taek-date {
+  font-size: 0.9em;
+  color: #888;
+  margin-top: 5px; /* 제목 아래 공백 */
+}
+
+.taek-buy-button, .taek-delete-button {
+  padding: 5px 10px;
+  font-size: 0.9em;
+  border: none;
+  background-color: #000000;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.taek-buy-button {
+  right: 90px; /* 삭제 버튼과의 간격 조절 */
+}
+
+.taek-buy-button:hover, .taek-delete-button:hover {
+  background-color: #aaaaaa;
+}
+
+.taek-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.taek-page-button {
+  padding: 10px;
+  margin: 0 5px;
+  font-size: 1em;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.taek-page-button:hover {
+  background-color: #0056b3;
+}

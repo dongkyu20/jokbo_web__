@@ -9,7 +9,7 @@ module.exports = {
     statusUI: function (request, response) {
       var authStatusUI = '<button class="been-login-button" onclick="location.href=`/auth/login`">로그인</button> | &nbsp; <button class="been-signup-button" onclick="location.href=`/auth/register`">회원가입</button>';
       if (this.isOwner(request, response)) {
-        authStatusUI = `${request.session.nickname}님 환영합니다 | &nbsp; <button type="button" class="been-signup-button" onclick="location.href='/auth/logout'">로그아웃</button>`;
+        authStatusUI = `${request.session.nickname}님 환영합니다 | &nbsp; <button class="been-signup-button" onclick="location.href='/auth/logout'">로그아웃</button>`;
       }
       return authStatusUI;
     },
