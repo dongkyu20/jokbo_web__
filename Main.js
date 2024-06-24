@@ -1032,11 +1032,75 @@ app.get('/purchase-history', (req, res) => {
   });
 });
 
+// 또 추가
+// 업로드 내역 라우트
 app.get('/upload-history', (req, res) => {
+  const username = req.session.username || 'testuser'; // 현재 로그인한 사용자의 username 가져오기 (임시로 'testuser' 설정)
+  if (!username) {
+    res.redirect('/login'); // 로그인되지 않은 경우 로그인 페이지로 리디렉션
+    return;
+  }
+
   let authStatusUI = authCheck.statusUI(req, res);
-  let bodyContent = `<h2>업로드내역</h2>`;
-  let html = template.HTML("업로드내역", bodyContent, authStatusUI);
-  res.send(html);
+
+  // notes 테이블에서 현재 사용자의 업로드 내역을 가져오기
+  db.query('SELECT * FROM notes WHERE username = ?', [username], (error, results) => {
+    if (error) {
+      console.error('Error fetching upload history:', error);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+
+    // 업로드 내역을 HTML 테이블로 변환
+    let tableRows = results.map(row => `
+      <tr>
+        <td>${row.id}</td>
+        <td>${row.title}</td>
+        <td>${row.upload_date}</td>
+      </tr>
+    `).join('');
+
+    let bodyContent = `
+      <h2>업로드 내역</h2>
+      <table class="upload-table">
+        <thead>
+          <tr>
+            <th>게시물 번호</th>
+            <th>제목</th>
+            <th>업로드 날짜</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${tableRows}
+        </tbody>
+      </table>
+      <style>
+        .upload-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 20px 0;
+          font-size: 18px;
+          text-align: left;
+        }
+        .upload-table th, .upload-table td {
+          padding: 12px;
+          border-bottom: 1px solid #ddd;
+        }
+        .upload-table th {
+          background-color: #f2f2f2;
+        }
+        .upload-table tr:nth-child(even) {
+          background-color: #f9f9f9;
+        }
+        .upload-table tr:hover {
+          background-color: #f1f1f1;
+        }
+      </style>
+    `;
+
+    let html = template.HTML("업로드 내역", bodyContent, authStatusUI);
+    res.send(html);
+  });
 });
 
 app.get('/edit-profile', (req, res) => {
