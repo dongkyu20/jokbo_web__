@@ -962,12 +962,74 @@ app.get('/mypage', (req, res) => {
   let html = template.myPage(authStatusUI);
   res.send(html);
 });
-
+// 방금 추가한거
 app.get('/purchase-history', (req, res) => {
+  const username = req.session.username || 'testuser'; // 현재 로그인한 사용자의 username 가져오기 (임시로 'testuser' 설정)
+  if (!username) {
+    res.redirect('/login'); // 로그인되지 않은 경우 로그인 페이지로 리디렉션
+    return;
+  }
+
   let authStatusUI = authCheck.statusUI(req, res);
-  let bodyContent = `<h2>구매내역</h2>`;
-  let html = template.HTML("구매내역", bodyContent, authStatusUI);
-  res.send(html);
+
+  // actionlog 테이블에서 현재 사용자의 구매내역을 가져오기
+  db.query('SELECT * FROM actionlog WHERE username = ?', [username], (error, results) => {
+    if (error) {
+      console.error('Error fetching purchase history:', error);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+
+    // 구매내역을 HTML 테이블로 변환
+    let tableRows = results.map(row => `
+      <tr>
+        <td>${row.lecture_id}</td>
+        <td>${row.sellername}</td>
+        <td>${row.price}</td>
+      </tr>
+    `).join('');
+
+    let bodyContent = `
+      <h2>구매내역</h2>
+      <table class="purchase-table">
+        <thead>
+          <tr>
+            <th>게시물 번호</th>
+            <th>판매자</th>
+            <th>가격</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${tableRows}
+        </tbody>
+      </table>
+      <style>
+        .purchase-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 20px 0;
+          font-size: 18px;
+          text-align: left;
+        }
+        .purchase-table th, .purchase-table td {
+          padding: 12px;
+          border-bottom: 1px solid #ddd;
+        }
+        .purchase-table th {
+          background-color: #f2f2f2;
+        }
+        .purchase-table tr:nth-child(even) {
+          background-color: #f9f9f9;
+        }
+        .purchase-table tr:hover {
+          background-color: #f1f1f1;
+        }
+      </style>
+    `;
+
+    let html = template.HTML("구매내역", bodyContent, authStatusUI);
+    res.send(html);
+  });
 });
 
 app.get('/upload-history', (req, res) => {
