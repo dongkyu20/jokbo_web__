@@ -1,0 +1,115 @@
+.nam-lecture-grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(aoto, 170px); /* 세로 4칸, 각 행의 높이를 100px로 설정 */
+    column-gap: 20px;
+    row-gap: 50px;
+    width: 89%;
+    margin-left:63px;
+    border: none;
+    padding: 20px;
+    background-color: #fff;
+}
+
+/* 그리드 아이템 */
+.nam-lecture-grid-item {
+    position: relative; /* 상대 위치 지정 */
+    overflow: hidden; /* 이미지 넘치는 부분 숨김 */
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+.nam-lecture-grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease; /* 애니메이션 효과 */
+    max-height: 200px; /* 최대 높이 지정 */
+}
+
+/* 이미지에 호버 효과 */
+.nam-lecture-grid-item:hover img {
+    transform: scale(1.05); /* 확대 효과 */
+}
+
+/* 설명 위치 및 스타일 */
+.nam-description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px;
+    text-align: left;
+    transition: opacity 0.3s ease;
+}
+.nam-modal{
+    position:absolute;
+    display:none;
+    
+    justify-content: center;
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background-color: rgba(0,0,0,0.4);
+}
+.nam-modal_body{
+    position:absolute;
+    top:50%; 
+
+
+    width:500px; 
+    height:290px;
+
+    text-align: center;
+
+    background-color:#FFFFFF;
+    border-radius:10px;
+
+    transform:translateY(-50%);
+}
+.nam-closebutton{
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    margin-left:475px;
+    margin-top:5px;
+    width:20px;
+    font-size: 15px;
+    color: #343434;
+    border-radius:30px;
+    background-color: #ababab; /* 배경색 */
+    border: none;
+    cursor: pointer;
+}
+.nam-title{
+    text-align: center; /* 타이틀을 중앙에 정렬 */
+    margin-bottom: 20px; /* 타이틀과 폼 그룹 사이의 간격 조정 */
+}
+.nam-form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    text-align: left; /* 텍스트를 좌측 정렬 */
+    margin-left: 20px; 
+}
+
+.nam-form-group label {
+    margin-right: 10px;
+    min-width: 100px;
+    text-align: right; /* 레이블 텍스트를 좌측 정렬 */
+}
+
+.nam-purchasebutton{
+    margin-top:10px;
+    width:240px;
+    cursor: pointer;
+    border-radius:5px;
+    background-color: #AEBFEC; /* 배경색 */
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+}

@@ -64,22 +64,34 @@ app.use('/auth', authRouter);
 app.get('/main', (req, res) => {
   let authStatusUI = authCheck.statusUI(req, res);
   let bodyContent = `
+  <div class="slider-content">
+                <img class="slide" src="./assets/LECBEN.png" alt="Slide 1">
+                <img class="slide" src="./assets/ASSBEN.png" alt="Slide 2">
+                <img class="slide" src="./assets/TESBEN.png" alt="Slide 3">
+                <img class="slide" src="./assets/NOTBEN.png" alt="Slide 4">
+            </div>
     <section class="been-notes">
       <div class="been-note-container">
         <div class="been-note-title-left">
-          <h2>뜨끈뜨끈 최신 노트</h2>
-          <div class="been-notes-click-container">
-            <div class="been-notes-click-left been-note-item">운영체제 1주차 월요일 필기 - 고경준<br>₩30,000</div>
-            <div class="been-notes-click-left been-note-item">운영체제 2주차 월요일 필기 - 고경준<br>₩30,000</div>
-            <div class="been-notes-click-left been-note-item">운영체제 3주차 월요일 필기 - 고경준<br>₩30,000</div>
+          <h2>뜨끈뜨끈 최신 과제풀이</h2>
+          <div class="been-notes-click-container">`;
+          db.query('SELECT * FROM assignments ORDER BY id DESC LIMIT 3', (error, results) => {
+            if (error) throw error;
+            results.forEach(assignment => {
+              bodyContent += `<div class="been-notes-click-left been-note-item">${assignment.title} - ${assignment.professor}<br>${assignment.price}</div>`;
+            });
+            bodyContent += `
           </div>
         </div>
         <div class="been-note-title-right">
           <h2>뜨끈뜨끈 최신 필기</h2>
-          <div class="been-notes-click-container">
-            <div class="been-notes-click-right been-note-item">운영체제 4주차 월요일 필기 - 고경준<br>₩30,000</div>
-            <div class="been-notes-click-right been-note-item">운영체제 5주차 월요일 필기 - 고경준<br>₩30,000</div>
-            <div class="been-notes-click-right been-note-item">운영체제 6주차 월요일 필기 - 고경준<br>₩30,000</div>
+          <div class="been-notes-click-container">`;
+        db.query('SELECT * FROM notes ORDER BY id DESC LIMIT 3', (error, results) => {
+          if (error) throw error;
+          results.forEach(note => {
+            bodyContent += `<div class="been-notes-click-right been-note-item">${note.title} - ${note.professor}<br>${note.price}</div>`;
+          });
+          bodyContent += `
           </div>
         </div>
       </div>
@@ -91,13 +103,13 @@ app.get('/main', (req, res) => {
       <div class="been-uploads">
         <div class="been-uploads-item">
           <div class="been-image-container">
-            <img src="./assets/UPL1.png" alt="업로드 이미지">
+            <img src="/assets/UPL1.png" alt="업로드 이미지">
             <a href="#" class="been-upload-button">Upload</a>
           </div>
         </div>
         <div class="been-uploads-item">
           <div class="been-image-container">
-            <img src="./assets/UPL1.png" alt="업로드 이미지">
+            <img src="/assets/UPL1.png" alt="업로드 이미지">
             <a href="#" class="been-upload-button">Upload</a>
           </div>
         </div>
@@ -122,42 +134,42 @@ app.get('/main', (req, res) => {
         <p>©UNIFILE ALL RIGHTS RESERVED</p>
       </div>
     </footer>
-    <script type="text/javascript">
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
       const slides = document.querySelectorAll('.slide');
+  
+
       const slideContainer = document.querySelector('.slider-content');
       const slideWidth = slides[0].clientWidth;
-      const interval = 4000;
-      let currentIndex = 0;
+      const interval = 4000; // 4 seconds
+      let currentIndex = 0; // 변수 정의를 함수 외부로 이동
 
       function nextSlide() {
         currentIndex = (currentIndex + 1) % slides.length;
         slideContainer.style.transition = 'transform 1s ease';
-        slideContainer.style.transform = 'translateX(${`currentIndex * slideWidth`}px)';
+        slideContainer.style.transform = 'translateX(' + (-currentIndex * slideWidth) + 'px)';
       }
-
       setInterval(nextSlide, interval);
-    </script>
+    });</script>
   `;
   let html = template.HTML('Welcome', bodyContent, authStatusUI);
   res.send(html);
+  });
+});
 });
 
 app.get('/lecture', (req, res) => {
   let authStatusUI = authCheck.statusUI(req, res);
-  db.query('SELECT * FROM lectures', (error, results) => {
+  db.query('SELECT * FROM lectures ORDER BY id DESC', (error, results) => {
     if (error) throw error;
     let bodyContent = `
       <div class="taek-container">
-        <h1 class="taek-title">필기노트</h1>
+        <h1 class="taek-title">강의영상</h1>
         <hr>
-        <div class="taek-search-section">
-          <input type="text" id="taek-searchInput" placeholder="검색어를 입력하세요" class="taek-search-bar" />
-          <button id="taek-searchButton" class="taek-search-button">검색</button>
-        </div>
         <button onclick="location.href='/lecture/upload'" class="taek-upload-button">글 올리기</button>
     `;
     results.forEach(lecture => {
-      bodyContent += `<div id="taek-notesSection"><a href="/lecture/${lecture.id}"><h3>${lecture.title}</h3></a><hr></div>`;
+      bodyContent += `<div id="taek-notesSection"><a href="/lecture/${lecture.id}"><h3>${lecture.title} - ${lecture.professor}</h3></a><hr></div>`;
     });
     bodyContent += `
       <div class="taek-pagination" id="taek-pagination"></div>
@@ -276,7 +288,7 @@ app.get('/lecture/:id', (req, res) => {
             bodyContent += `<div style="margin-left:40px">
             <a href="/lecture/download/${lecture.id}">파일 다운로드</a></div>`;
           } else {
-            bodyContent += `<form action="/purchase/${lecture.id}" method="post">
+            bodyContent += `<form action="/lecture/purchase/${lecture.id}" method="post">
                               <button type="submit">Purchase for ${lecture.price}</button>
                             </form>`;
           }
@@ -347,20 +359,16 @@ app.post('/lecture/purchase/:id', (req, res) => {
 
 app.get('/jokbo', (req, res) => {
   let authStatusUI = authCheck.statusUI(req, res);
-  db.query('SELECT * FROM jokbos', (error, results) => {
+  db.query('SELECT * FROM jokbos ORDER BY id DESC', (error, results) => {
     if (error) throw error;
     let bodyContent = `
       <div class="taek-container">
-        <h1 class="taek-title">필기노트</h1>
+        <h1 class="taek-title">족보</h1>
         <hr>
-        <div class="taek-search-section">
-          <input type="text" id="taek-searchInput" placeholder="검색어를 입력하세요" class="taek-search-bar" />
-          <button id="taek-searchButton" class="taek-search-button">검색</button>
-        </div>
         <button onclick="location.href='/jokbo/upload'" class="taek-upload-button">글 올리기</button>
     `;
     results.forEach(jokbo => {
-      bodyContent += `<div id="taek-notesSection"><a href="/jokbo/${jokbo.id}"><h3>${jokbo.title}</h3></a><hr></div>`;
+      bodyContent += `<div id="taek-notesSection"><a href="/jokbo/${jokbo.id}"><h3>${jokbo.title} - ${jokbo.professor}</h3></a><hr></div>`;
     });
     bodyContent += `
       <div class="taek-pagination" id="taek-pagination"></div>
@@ -472,14 +480,14 @@ app.get('/jokbo/:id', (req, res) => {
       `;
 
       if (username) {
-        db.query('SELECT * FROM actionlog WHERE jokbo_id = ? AND username = ?', [jokboId, username], (error, actionLogResults) => {
+        db.query('SELECT * FROM actionlog WHERE lecture_id = ? AND username = ?', [jokboId, username], (error, actionLogResults) => {
           if (error) throw error;
 
           if (actionLogResults.length > 0) {
             bodyContent += `<div style="margin-left:40px">
             <a href="/jokbo/download/${jokbo.id}">파일 다운로드</a></div>`;
           } else {
-            bodyContent += `<form action="/purchase/${jokbo.id}" method="post">
+            bodyContent += `<form action="/jokbo/purchase/${jokbo.id}" method="post">
                               <button type="submit">Purchase for ${jokbo.price}</button>
                             </form>`;
           }
@@ -527,7 +535,7 @@ app.post('/jokbo/purchase/:id', (req, res) => {
             db.query('UPDATE usertable SET point = point - ? WHERE username = ?', [price, username], (error) => {
               if (error) throw error;
 
-              db.query('INSERT INTO actionlog (jokbo_id, username, sellername, price) VALUES (?, ?, ?, ?)', 
+              db.query('INSERT INTO actionlog (lecture_id, username, sellername, price) VALUES (?, ?, ?, ?)', 
                 [jokboId, username, sellername, price], 
                 (error) => {
                   if (error) throw error;
@@ -555,20 +563,16 @@ app.post('/jokbo/purchase/:id', (req, res) => {
 
 app.get('/assignment', (req, res) => {
   let authStatusUI = authCheck.statusUI(req, res);
-  db.query('SELECT * FROM assignments', (error, results) => {
+  db.query('SELECT * FROM assignments ORDER BY id DESC', (error, results) => {
     if (error) throw error;
     let bodyContent = `
       <div class="taek-container">
-        <h1 class="taek-title">필기노트</h1>
+        <h1 class="taek-title">과제풀이</h1>
         <hr>
-        <div class="taek-search-section">
-          <input type="text" id="taek-searchInput" placeholder="검색어를 입력하세요" class="taek-search-bar" />
-          <button id="taek-searchButton" class="taek-search-button">검색</button>
-        </div>
         <button onclick="location.href='/assignment/upload'" class="taek-upload-button">글 올리기</button>
     `;
     results.forEach(assignment => {
-      bodyContent += `<div id="taek-notesSection"><a href="/assignment/${assignment.id}"><h3>${assignment.title}</h3></a><hr></div>`;
+      bodyContent += `<div id="taek-notesSection"><a href="/assignment/${assignment.id}"><h3>${assignment.title} - ${assignment.professor}</h3></a><hr></div>`;
     });
     bodyContent += `
       <div class="taek-pagination" id="taek-pagination"></div>
@@ -679,14 +683,14 @@ app.get('/assignment/:id', (req, res) => {
       `;
 
       if (username) {
-        db.query('SELECT * FROM actionlog WHERE assignment_id = ? AND username = ?', [assignmentId, username], (error, actionLogResults) => {
+        db.query('SELECT * FROM actionlog WHERE lecture_id = ? AND username = ?', [assignmentId, username], (error, actionLogResults) => {
           if (error) throw error;
 
           if (actionLogResults.length > 0) {
             bodyContent += `<div style="margin-left:40px">
             <a href="/assignment/download/${assignment.id}">파일 다운로드</a></div>`;
           } else {
-            bodyContent += `<form action="/purchase/${assignment.id}" method="post">
+            bodyContent += `<form action="/assignment/purchase/${assignment.id}" method="post">
                               <button type="submit">Purchase for ${assignment.price}</button>
                             </form>`;
           }
@@ -708,22 +712,64 @@ app.get('/assignment/:id', (req, res) => {
   });
 });
 
+app.post('/assignment/purchase/:id', (req, res) => {
+  const assignmentId = req.params.id;
+  const username = authCheck.resUsername(req, res);
+
+  if (!username) {
+    return res.redirect('/auth/login');
+  }
+
+  db.query('SELECT * FROM assignments WHERE id = ?', [assignmentId], (error, assignmentResults) => {
+    if (error) throw error;
+
+    if (assignmentResults.length > 0) {
+      const assignment = assignmentResults[0];
+      const price = assignment.price;
+      const sellername = assignment.username;
+
+      db.query('SELECT * FROM usertable WHERE username = ?', [username], (error, userResults) => {
+        if (error) throw error;
+
+        if (userResults.length > 0) {
+          const user = userResults[0];
+
+          if (user.point >= price) {
+            db.query('UPDATE usertable SET point = point - ? WHERE username = ?', [price, username], (error) => {
+              if (error) throw error;
+
+              db.query('INSERT INTO actionlog (lecture_id, username, sellername, price) VALUES (?, ?, ?, ?)', 
+                [assignmentId, username, sellername, price], 
+                (error) => {
+                  if (error) throw error;
+                  res.redirect(`/assignment/${assignmentId}`);
+              });
+            });
+          } else {
+            res.send('Insufficient points to make the purchase.');
+          }
+        } else {
+          res.redirect('/auth/login');
+        }
+      });
+    } else {
+      res.send('Assignment not found');
+    }
+  });
+});
+
 app.get('/note', (req, res) => {
   let authStatusUI = authCheck.statusUI(req, res);
-  db.query('SELECT * FROM notes', (error, results) => {
+  db.query('SELECT * FROM notes ORDER BY id DESC', (error, results) => {
     if (error) throw error;
     let bodyContent = `
       <div class="taek-container">
         <h1 class="taek-title">필기노트</h1>
         <hr>
-        <div class="taek-search-section">
-          <input type="text" id="taek-searchInput" placeholder="검색어를 입력하세요" class="taek-search-bar" />
-          <button id="taek-searchButton" class="taek-search-button">검색</button>
-        </div>
         <button onclick="location.href='/note/upload'" class="taek-upload-button">글 올리기</button>
     `;
     results.forEach(note => {
-      bodyContent += `<div id="taek-notesSection"><a href="/note/${note.id}"><h3>${note.title}</h3></a><hr></div>`;
+      bodyContent += `<div id="taek-notesSection"><a href="/note/${note.id}"><h3>${note.title} - ${note.professor}</h3></a><hr></div>`;
     });
     bodyContent += `
       <div class="taek-pagination" id="taek-pagination"></div>
@@ -836,14 +882,14 @@ app.get('/note/:id', (req, res) => {
       `;
 
       if (username) {
-        db.query('SELECT * FROM actionlog WHERE note_id = ? AND username = ?', [noteId, username], (error, actionLogResults) => {
+        db.query('SELECT * FROM actionlog WHERE lecture_id = ? AND username = ?', [noteId, username], (error, actionLogResults) => {
           if (error) throw error;
 
           if (actionLogResults.length > 0) {
             bodyContent += `<div style="margin-left:40px">
             <a href="/note/download/${note.id}">파일 다운로드</a></div>`;
           } else {
-            bodyContent += `<form action="/purchase/${note.id}" method="post">
+            bodyContent += `<form action="/note/purchase/${note.id}" method="post">
                               <button type="submit">Purchase for ${note.price}</button>
                             </form>`;
           }
@@ -864,6 +910,82 @@ app.get('/note/:id', (req, res) => {
     }
   });
 });
+
+app.post('/note/purchase/:id', (req, res) => {
+  const noteId = req.params.id;
+  const username = authCheck.resUsername(req, res);
+
+  if (!username) {
+    return res.redirect('/auth/login');
+  }
+
+  db.query('SELECT * FROM notes WHERE id = ?', [noteId], (error, noteResults) => {
+    if (error) throw error;
+
+    if (noteResults.length > 0) {
+      const note = noteResults[0];
+      const price = note.price;
+      const sellername = note.username;
+
+      db.query('SELECT * FROM usertable WHERE username = ?', [username], (error, userResults) => {
+        if (error) throw error;
+
+        if (userResults.length > 0) {
+          const user = userResults[0];
+
+          if (user.point >= price) {
+            db.query('UPDATE usertable SET point = point - ? WHERE username = ?', [price, username], (error) => {
+              if (error) throw error;
+
+              db.query('INSERT INTO actionlog (lecture_id, username, sellername, price) VALUES (?, ?, ?, ?)', 
+                [noteId, username, sellername, price], 
+                (error) => {
+                  if (error) throw error;
+                  res.redirect(`/note/${noteId}`);
+              });
+            });
+          } else {
+            res.send('Insufficient points to make the purchase.');
+          }
+        } else {
+          res.redirect('/auth/login');
+        }
+      });
+    } else {
+      res.send('Note not found');
+    }
+  });
+});
+
+app.get('/mypage', (req, res) => {
+  let authStatusUI = authCheck.statusUI(req, res);
+  let html = template.myPage(authStatusUI);
+  res.send(html);
+});
+
+app.get('/purchase-history', (req, res) => {
+  let authStatusUI = authCheck.statusUI(req, res);
+  let bodyContent = `<h2>구매내역</h2>`;
+  let html = template.HTML("구매내역", bodyContent, authStatusUI);
+  res.send(html);
+});
+
+app.get('/upload-history', (req, res) => {
+  let authStatusUI = authCheck.statusUI(req, res);
+  let bodyContent = `<h2>업로드내역</h2>`;
+  let html = template.HTML("업로드내역", bodyContent, authStatusUI);
+  res.send(html);
+});
+
+app.get('/edit-profile', (req, res) => {
+  let authStatusUI = authCheck.statusUI(req, res);
+  let bodyContent = `<h2>회원정보 변경</h2>`;
+  let html = template.HTML("회원정보 변경", bodyContent, authStatusUI);
+  res.send(html);
+});
+
+
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
